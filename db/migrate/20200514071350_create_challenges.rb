@@ -3,8 +3,8 @@ class CreateChallenges < ActiveRecord::Migration[6.0]
     create_table :challenges do |t|
       t.string :name
       t.integer :duration
-      t.date :start_date
-      t.date :end_date
+      t.datetime :start_date
+      t.datetime :end_date
       t.integer :reps
       t.integer :user_id
       t.integer :type_id

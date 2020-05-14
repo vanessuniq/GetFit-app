@@ -1,0 +1,5 @@
+User.create(username: 'vanessuniq', email: 'vanessuniq@gmail.com', password: 'love', dob: '1993-01-10')
+Type.create(name: 'Cardio')
+Type.create(name: 'Strenght')
+Type.create(name: 'Stretching')
+Type.create(name: 'Balance')
