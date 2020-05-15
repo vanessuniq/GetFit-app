@@ -19,6 +19,23 @@ class UsersController < ApplicationController
         end
     end
 
-    
+    get '/session/login' do
+        if logged_in?
+            redirect "/profile/#{current_user.username}" 
+        else
+            erb :'users/login'
+        end
+    end
+
+    post '/session' do
+        @user = User.find_by(username: params[:username])
+        if @user && @user.authenticate(params[:password])
+            session[:user_id] = @user.id
+            redirect "/profile/#{current_user.username}"
+        else
+            @errors = "Invalid username or password"
+            redirect '/session/login'
+        end
+    end
 
 end

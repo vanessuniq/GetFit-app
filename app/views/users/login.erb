@@ -1,0 +1,25 @@
+<form action="/session" method="post">
+    <div class="imgcontainer">
+        <img src="/images/fitness.jpg" alt="fitness image" class="fitness"/>
+    </div>
+
+    <div class="container">
+        <label for="username"><b>Username</b></label>
+        <input type="text" name="username" id="username" required/><br>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" name="password" id="psw" required/><br>
+    </div>
+    
+    <div class="container" style="background-color:#f1f1f1">
+        <% if @errors %>
+            <p style="color:red;"><%= @errors %></p>
+            <button type="submit" value= "LogIn">LogIn</button><br>
+            <p>or</p><br>
+            <button type="button" id="signupbtn"><a href="/registration/signup">SignUp</a></button>
+        <% else %>
+            <button type="submit" value= "LogIn">LogIn</button>
+        <% end %>
+        
+    </div>
+
+</form>
