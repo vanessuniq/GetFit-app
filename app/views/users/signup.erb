@@ -1,0 +1,29 @@
+<form action="/registration" method="post">
+    
+    <div class = "container">
+        <h1>Sign Up</h1>
+        <p>Fill in this form to create an account.</p>
+        <hr>
+        <% if @errors %>
+            <% @errors.each do |error|%>
+                <p style="color: red;"><%= error %></p>
+            <% end %>
+        <% end %>
+
+        <label for="username"><b>User Name</b></label>
+        <input type="text" name="username" id="username" placeholder="Enter username" required/><br>
+        <label for="dob"><b>Date of birth</b></label>
+        <input type="date" name="dob" id="dob" placeholder="YYYY-MM-DD"><br>
+        <label for="weight"><b>Weight</b></label>
+        <p><input type="number" name="weight" id="weight" placeholder="Enter weight in pounds"> lbs</p><br>
+        <label for="email"><b>Email</b></label>
+        <input type="email" name="email" id="email" placeholder="Enter a valid email" required/><br>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" name="password" id="psw" placeholder="Enter password" required/><br>
+
+        <div class="submission">
+            <button type="button" id="cancelbtn"><a href="/">Cancel</a></button>
+            <button type="submit" id="signupbtn">Sign Up!</button>
+        </div>
+    </div>
+</form>
