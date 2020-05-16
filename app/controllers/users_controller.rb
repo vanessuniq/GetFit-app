@@ -38,4 +38,18 @@ class UsersController < ApplicationController
         end
     end
 
+    get '/session/logout' do
+        session.clear
+        redirect '/'
+    end
+
+    get '/profile/:username' do
+        if logged_in?
+            @user = current_user
+            erb :'users/profile'
+        else
+            redirect '/session/login'
+        end
+    end
+
 end

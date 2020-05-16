@@ -1,0 +1,26 @@
+<h1>GetFit</h1>
+<header>
+    <nav>
+        <ul>
+            <li> <a href="/">Home</a></li>
+            <li><a href="/session/logout">LogOut</a></li>
+        </ul>
+    </nav>
+    <h2><span id="greet"></span>, <%= @user.username %>!</h2>
+</header>
+<section>
+    <div class="info">
+        <img src="/images/profile.jpg" alt="silhouette avatar" style="width:100%"/>
+        <h2><%= @user.username%></h2>
+        <p>D.O.B: <%= @user.dob.strftime("%b%d%Y")%></p>
+        <p>Weight: <%= @user.weight%> lbs</p>
+        <p>Email: <%= @user.email %></p>
+    </div>
+    <aside>
+        <ul>
+            <li><a href="/challenges">My Challenges</a></li>
+            <li><a href="/types">My Workout Types</a></li>
+            <li><a href="/challenges/new">Create New Challenge</a></li>
+        </ul>
+    </aside>
+</section>
