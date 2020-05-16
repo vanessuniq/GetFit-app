@@ -1,7 +1,7 @@
 class ApplicationController < Sinatra::Base
     register Sinatra::ActiveRecordExtension
     set :views, Proc.new { File.join(root, "../views/") }
-    set :public_folder, 'public'
+    set :public_dir, "public"
 
     configure do
         enable :sessions

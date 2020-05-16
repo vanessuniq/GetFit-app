@@ -1,26 +1,29 @@
-<h1>GetFit</h1>
+<div class="navbar">
+    <ul>
+        <li> <a href="/">Home</a></li>
+        <li><a href="/session/logout">LogOut</a></li>
+    </ul>
+</div>
+
 <header>
-    <nav>
-        <ul>
-            <li> <a href="/">Home</a></li>
-            <li><a href="/session/logout">LogOut</a></li>
-        </ul>
-    </nav>
+<br>
+    <h1>GetFit</h1><br>
     <h2><span id="greet"></span>, <%= @user.username %>!</h2>
 </header>
 <section>
-    <div class="info">
-        <img src="/images/profile.jpg" alt="silhouette avatar" style="width:100%"/>
+    <div class="left" id="info">
         <h2><%= @user.username%></h2>
-        <p>D.O.B: <%= @user.dob.strftime("%b%d%Y")%></p>
+        <p>D.O.B: <%= @user.dob.strftime("%b %d, %Y")%></p>
         <p>Weight: <%= @user.weight%> lbs</p>
         <p>Email: <%= @user.email %></p>
     </div>
-    <aside>
+    <br>
+    <div class="left">
         <ul>
             <li><a href="/challenges">My Challenges</a></li>
             <li><a href="/types">My Workout Types</a></li>
             <li><a href="/challenges/new">Create New Challenge</a></li>
         </ul>
-    </aside>
+    </div>
+    <br>
 </section>
