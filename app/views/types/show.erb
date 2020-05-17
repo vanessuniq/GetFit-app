@@ -1,0 +1,20 @@
+<div class="navbar">
+    <ul>
+        <li><a href="/types">My challenge types</a></li>
+        <li><a href="/challenges/new">Create new challenge</a></li>
+        <li> <a href="/profile/:username">My account</a></li>
+        <li><a href="/session/logout">LogOut</a></li>
+    </ul>
+</div>
+<header>
+    <br>
+    <h1>My <%= @type.name %> Challenges </h1>
+</header>
+
+<section>
+    <ul>
+        <% @type.challenges.each do |challenge| %>
+          <li><a href="/challenges/<%= challenge.id %>"><b style="color:#800000"><%= challenge.duration %> Day <%= challenge.name %> Challenge</b></a></li>
+        <% end %>
+    </ul>
+</section>
