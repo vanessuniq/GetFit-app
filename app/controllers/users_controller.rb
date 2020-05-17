@@ -34,7 +34,7 @@ class UsersController < ApplicationController
             redirect "/profile/#{current_user.username}"
         else
             @errors = "Invalid username or password"
-            redirect '/session/login'
+            erb :'users/login'
         end
     end
 
