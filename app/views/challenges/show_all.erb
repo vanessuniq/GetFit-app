@@ -10,10 +10,10 @@
     <h1>My challenges </h1>
 </header>
 <section>
-    <ul>
+    <ul >
         <% @challenges.each do |challenge| %>
           <li>
-            <a href="/challenges/<%= challenge.id %>"><%= challenge.duration %> Day <%= challenge.name%></a>
+            <a href="/challenges/<%= challenge.id %>" style="color:brown" ><%= challenge.duration %> Day <%= challenge.name%></a>
           </li>
         <% end %>
     </ul>

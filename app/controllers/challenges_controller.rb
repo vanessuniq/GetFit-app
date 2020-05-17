@@ -1,8 +1,13 @@
 require 'pry'
 class ChallengesController < ApplicationController
     get '/challenges' do
-        @challenges = Challenge.all
-        erb :'challenges/show_all'
+        if logged_in?
+            @challenges = Challenge.where(user: current_user)
+            erb :'challenges/show_all' 
+        else
+           redirect '/session/login' 
+        end
+        
     end
 
     get '/challenges/new' do
@@ -86,6 +91,18 @@ class ChallengesController < ApplicationController
         else
             @errors = @challenge.errors.full_messages
             erb :'challenges/update'
+        end
+    end
+
+    delete '/challenges/:id/delete' do
+        if logged_in?
+            @challenges = Challenge.where(user: current_user)
+            @challenge = @challenges.select {|challenge| challenge.id = params[:id]}.first
+            @challenge.destroy
+            
+            redirect '/challenges'
+        else
+            redirect '/session/login'
         end
     end
 
