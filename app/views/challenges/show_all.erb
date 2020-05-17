@@ -1,0 +1,19 @@
+<div class="navbar">
+    <ul>
+        <li><a href="/challenges/new">Create new challenge</a></li>
+        <li> <a href="/profile/:username">My account</a></li>
+        <li><a href="/session/logout">LogOut</a></li>
+    </ul>
+</div>
+<header>
+    <h1>My challenges </h1>
+</header>
+<section>
+    <ul>
+        <% @challenges.each do |challenge| %>
+          <li>
+            <a href="/challenges/<%= challenge.id %>"><%= challenge.duration %> Day <%= challenge.name%></a>
+          </li>
+        <% end %>
+    </ul>
+</section>
