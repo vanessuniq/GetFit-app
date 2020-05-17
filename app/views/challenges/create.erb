@@ -9,18 +9,22 @@
           <input type="radio" name="type" id="<%= type.name %>" value="<%= type.id %>">
           <label for="<%= type.name %>"><%= type.name %></label><br>
         <% end %>
+        <p>
         <label for="duration">Duration: </label>
         <input type="number" name="challenge[duration]" id="duration"> day(s)<br>
+        </p>
         <label for="start_date">Start Date: </label>
-        <input type="date" name="challenge[start_date]" id="start_date"><br>
+        <input type="date" name="challenge[start_date]" id="start_date"><br><br>
         <label for="end_date">End Date: </label>
-        <input type="date" name="challenge[end_date]" id="end_date">
+        <input type="date" name="challenge[end_date]" id="end_date"><br><br>
         <label for="reps">Number of Repetion: </label>
-        <input type="number" name="challenge[reps]" id="reps">
+        <input type="number" name="challenge[reps]" id="reps"><br><br>
+        <p>
         <label for="initial_set">Initial Number of Sets: </label>
         <input type="number" name="sets" id="initial_set">
         <label for="set_increment">Imcrement number of sets by </label>
         <input type="number" name="set_increment" id="set_increment"> daily <br>
+        </p>
     </div>
 </form>
 <div class="submission">
