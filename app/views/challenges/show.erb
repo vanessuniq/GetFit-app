@@ -1,0 +1,33 @@
+<div class="navbar">
+    <ul>
+        <li><a href="/challenges/new">Create new challenge</a></li>
+        <li> <a href="/profile/:username">My account</a></li>
+        <li><a href="/session/logout">LogOut</a></li>
+    </ul>
+</div>
+<header>
+    <br>
+    <h1>Challenge Details </h1>
+</header>
+<section>
+    <h3><%= @challenge.duration %> Day <%= @challenge.name.capitalize %> Challenge </h3>
+    <br>
+    <p><b>Start date: </b> <%= @challenge.start_date.strftime("%b %d, %Y") %></p>
+    <p><b>End date: </b><%= @challenge.end_date.strftime("%b %d, %Y") %></p>
+    <p><b>Number of Reps: </b><%= @challenge.reps %></p>
+    <br>
+    <h4>Sets per Day</h4>
+    <% @challenge.days.each do |day| %>
+      <p style="color:navy"><b><%= day.name %>: </b> <%= day.sets %> sets</p>
+    <% end %>
+
+    <div class="submission">
+        <button type="button" id="signupbtn"><a href="/challenges/<%= @challenge.id %>/edit" style="color:black">Edit Challenge</a></button>
+        <form action="/challenges/<%= @challenge.id%>/delete" method="post">
+            <input type="hidden" name="_method" id="hidden" value="DELETE"/>
+            <button type="submit" id="cancelbtn">Delete Challenge</button>
+        </form>
+        
+    </div>
+
+</section>

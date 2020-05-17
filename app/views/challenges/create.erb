@@ -1,6 +1,12 @@
 <h1>New Challenge!</h1>
 
-<form action="/challenges" method="post">
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <p style="color:red"><%= error %></p>
+  <% end %>
+<% end %>
+
+<form action="/challenges" method="POST">
     <div>
         <label for="challenge_name">Challenge Name: </label>
         <input type="text" name="challenge[name]" id="challenge_name"><br>
@@ -22,12 +28,12 @@
         <p>
         <label for="initial_set">Initial Number of Sets: </label>
         <input type="number" name="sets" id="initial_set">
-        <label for="set_increment">Imcrement number of sets by </label>
+        <label for="set_increment">Increment number of sets by </label>
         <input type="number" name="set_increment" id="set_increment"> daily <br>
         </p>
     </div>
+    <div class="submission">
+        <button type="button" id="cancelbtn"><a href="/profile/<%= current_user.username %>">Cancel</a></button>
+        <button type="submit" id="signupbtn">Create</button>
+    </div>
 </form>
-<div class="submission">
-    <button type="button" id="cancelbtn"><a href="/profile/<%= current_user.username %>">Cancel</a></button>
-    <button type="submit" id="signupbtn">Create</button>
-</div>
