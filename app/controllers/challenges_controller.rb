@@ -75,7 +75,8 @@ class ChallengesController < ApplicationController
             @challenge.days.clear
 
             @type = Type.find(params[:type])
-            @challenge.type = @type 
+            @challenge.type = @type
+            @challenge.days.each {|day| day.destroy}
 
             n = (params[:challenge][:duration]).to_i
             num_sets = (params[:sets]).to_i

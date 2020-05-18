@@ -5,9 +5,9 @@
   <% end %>
 <% end %>
 
-<form action="/challenges/<%= @challenge.id %>" method="post">
+<form action="/challenges/<%= @challenge.id %>" method="POST">
     <div>
-        <input type="hidden" name="_method" id="hidden" value="patch"/>
+        <input type="hidden" name="_method" id="hidden" value="PATCH"/>
 
         <label for="challenge_name">Challenge Name: </label>
         <input type="text" name="challenge[name]" id="challenge_name" value="<%= @challenge.name %>" required><br>
@@ -21,9 +21,9 @@
         <input type="number" name="challenge[duration]" id="duration" value="<%= @challenge.duration%>" required> day(s)<br>
         </p>
         <label for="start_date">Start Date: </label>
-        <input type="date" name="challenge[start_date]" id="start_date" value="<%= @challenge.start_date %>" required><br><br>
+        <input type="date" name="challenge[start_date]" id="start_date" required><br><br>
         <label for="end_date">End Date: </label>
-        <input type="date" name="challenge[end_date]" id="end_date" value="<%= @challenge.end_date %>" required><br><br>
+        <input type="date" name="challenge[end_date]" id="end_date" required><br><br>
         <label for="reps">Number of Repetion: </label>
         <input type="number" name="challenge[reps]" id="reps" value="<%= @challenge.reps %>" required><br><br>
         <p>
