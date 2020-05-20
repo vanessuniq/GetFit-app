@@ -1,7 +1,7 @@
 <div class="navbar">
     <ul>
         <li> <a href="/">Home</a></li>
-        <li><a href="/session/logout">LogOut</a></li>
+        <li><a href="/sessions/logout">LogOut</a></li>
     </ul>
 </div>
 
@@ -13,16 +13,18 @@
 <section>
     <div class="left" id="info">
         <h2><%= @user.username%></h2>
-        <p>D.O.B: <%= @user.dob.strftime("%b %d, %Y")%></p>
+        <% if @user.dob %>
+          <p>D.O.B: <%= @user.dob.strftime("%b %d, %Y")%></p>
+        <% end %>
         <p>Weight: <%= @user.weight%> lbs</p>
         <p>Email: <%= @user.email %></p>
     </div>
     <br>
     <div class="left">
         <ul>
-            <li><a href="/challenges">My Challenges</a></li>
-            <li><a href="/types">My Workout Types</a></li>
-            <li><a href="/challenges/new">Create New Challenge</a></li>
+            <li><a href="/users/<%= @user.username %>/challenges">My Challenges</a></li>
+            <li><a href="/users/<%= @user.username %>/types">My Workout Types</a></li>
+            <li><a href="/users/<%= @user.username %>/challenges/new">Create New Challenge</a></li>
         </ul>
     </div>
     <br>
