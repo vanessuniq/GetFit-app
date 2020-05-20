@@ -1,8 +1,8 @@
 <div class="navbar">
     <ul>
-        <li><a href="/challenges/new">Create new challenge</a></li>
-        <li> <a href="/profile/:username">My account</a></li>
-        <li><a href="/session/logout">LogOut</a></li>
+        <li><a href="/users/<%= current_user.username %>/challenges/new">Create new challenge</a></li>
+        <li> <a href="/users/<%= current_user.username %>">My account</a></li>
+        <li><a href="/sessions/logout">LogOut</a></li>
     </ul>
 </div>
 <header>
@@ -10,11 +10,16 @@
     <h1>My challenges </h1>
 </header>
 <section>
-    <ul >
+    <% if @challenges.empty? %>
+      <p>There is no challenge to display. <a href="/users/<%= current_user.username %>/challenges/new"><b>Create new challenge</b></a></p>
+    <% else %>
+      <ul >
         <% @challenges.each do |challenge| %>
           <li>
-            <a href="/challenges/<%= challenge.id %>" style="color:brown" ><%= challenge.duration %> Day <%= challenge.name%></a>
+            <a href="/users/<%= current_user.username %>/challenges/<%= challenge.id %>" style="color:brown" ><%= challenge.duration %> Day <%= challenge.name%></a>
           </li>
         <% end %>
     </ul>
+    <% end %>
+    
 </section>

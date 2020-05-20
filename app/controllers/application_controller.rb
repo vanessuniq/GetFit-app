@@ -20,5 +20,9 @@ class ApplicationController < Sinatra::Base
         def current_user
           User.find(session[:user_id])
         end
+
+        def user_verified?
+          logged_in? && current_user.username == params[:username]
+        end
     end
 end

@@ -1,21 +1,22 @@
 require 'pry'
 class ChallengesController < ApplicationController
-    get '/challenges' do
-        if logged_in?
-            @challenges = Challenge.where(user: current_user)
+    get '/users/:username/challenges' do
+        if user_verified?
+            @challenges = current_user.challenges
             erb :'challenges/show_all' 
         else
-           redirect '/session/login' 
+           redirect '/sessions/login' 
         end
         
     end
 
-    get '/challenges/new' do
-        if logged_in?
+    get '/users/:username/challenges/new' do
+        if user_verified?
             @types = Type.all
+            @errors = session.delete(:errors)
             erb :'challenges/create'
         else
-            redirect '/session/login'
+            redirect '/sessions/login'
         end
     end
 
@@ -35,30 +36,29 @@ class ChallengesController < ApplicationController
                 num_sets += up
             end
             if @challenge.save
-                redirect "/challenges/#{@challenge.id}"
+                redirect "/users/#{current_user.username}/challenges/#{@challenge.id}"
             else
-                @errors = @challenge.errors.full_messages
-                erb :'challenges/create'
+                session[:errors] = @challenge.errors.full_messages
+                redirect "/users/#{current_user.username}/challenges/new"
             end
             
         else
-          redirect '/session/login'  
+          redirect '/sessions/login'  
         end
     end
 
-    get '/challenges/:id' do
+    get '/users/:username/challenges/:id' do
         
-        if logged_in?
-            @challenges = Challenge.where(user: current_user) 
-            @challenge = @challenges.select {|challenge| challenge.id = params[:id]}.first
+        if user_verified?
+            @challenge = current_user.challenges.select {|challenge| challenge.id = params[:id]}.first
             erb :'challenges/show'
         else
-            redirect '/session/login'
+            redirect '/sessions/login'
         end
     end
 
     get '/challenges/:id/edit' do
-        if logged_in?
+        if logged_in? #START HERE
             @challenges = Challenge.where(user: current_user)
             @challenge = @challenges.select {|challenge| challenge.id = params[:id]}.first
             @types = Type.all
