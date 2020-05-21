@@ -1,8 +1,8 @@
 <div class="navbar">
     <ul>
-        <li><a href="/challenges/new">Create new challenge</a></li>
-        <li> <a href="/profile/:username">My account</a></li>
-        <li><a href="/session/logout">LogOut</a></li>
+        <li><a href="/users/<%= current_user.username %>/challenges/new">Create new challenge</a></li>
+        <li> <a href="/users/<%= current_user.username %>">My account</a></li>
+        <li><a href="/sessions/logout">LogOut</a></li>
     </ul>
 </div>
 <header>
@@ -10,11 +10,16 @@
     <h1>My Challenges' Types </h1>
 </header>
 <section>
-    <ul >
+    <% if @types.empty? %>
+      <p>You have not created a challenge under any type yet. <a href="/users/<%= current_user.username %>/challenges/new"><b>Create new challenge</b></a></p>
+    <% else %>
+      <ul >
         <% @types.each do |type| %>
           <li>
-            <a href="/types/<%= type.id %>" style="color:brown" ><%= type.name%></a>
+            <a href="/users/<%= current_user.username %>/types/<%= type.id %>" style="color:brown" ><%= type.name%></a>
           </li>
         <% end %>
     </ul>
+    <% end %>
+    
 </section>

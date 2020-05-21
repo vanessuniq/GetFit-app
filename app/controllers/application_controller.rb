@@ -24,5 +24,6 @@ class ApplicationController < Sinatra::Base
         def user_verified?
           logged_in? && current_user.username == params[:username]
         end
+
     end
 end

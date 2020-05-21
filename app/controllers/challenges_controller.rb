@@ -25,7 +25,19 @@ class ChallengesController < ApplicationController
         if logged_in?
             @challenge = current_user.challenges.build(params[:challenge])
             @challenge.type = Type.find(params[:type])
-            @challenge.build_challenge_days
+
+            # set variables to build days
+            @total_days = (params[:challenge][:duration]).to_i
+            @num_sets = (params[:sets]).to_i
+            @set_increment = (params[:set_increment]).to_i
+            @counter = 1
+                                                        #is there a way to abstract this 2
+            # build challenge days
+            @total_days.times do
+                @challenge.days.build(name: "day#{@counter}", sets: @num_sets)
+                @counter += 1
+                @num_sets += @set_increment
+            end
             
             if @challenge.save
                 redirect "/users/#{current_user.username}/challenges/#{@challenge.id}"
@@ -42,7 +54,7 @@ class ChallengesController < ApplicationController
     get '/users/:username/challenges/:id' do
         
         if user_verified?
-            @challenge = current_user.selected_challenge
+            @challenge = current_user.challenges.find(params[:id])
             #@message = session.delete(:success) add it to show.erb
             erb :'challenges/show'
         else
@@ -50,9 +62,9 @@ class ChallengesController < ApplicationController
         end
     end
 
-    get 'users/:username/challenges/:id/edit' do
+    get '/users/:username/challenges/:id/edit' do
         if user_verified? #START HERE
-            @challenge = current_user.challenges.select {|challenge| challenge.id = params[:id]}.first
+            @challenge = current_user.challenges.find(params[:id])
             @types = Type.all
             @errors = session.delete(:errors)
             erb :'/challenges/update'
@@ -62,14 +74,24 @@ class ChallengesController < ApplicationController
     end
 
     patch '/challenges/:id' do
-        @challenge = current_user.selected_challenge
+        @challenge = current_user.challenges.find(params[:id])
         if @challenge.update(params[:challenge])
-            #@challenge.days.clear
 
             @challenge.type = Type.find(params[:type])
             @challenge.days.each {|day| day.destroy}
 
-            @challenge.build_challenge_days
+            # set variables to build days
+            @total_days = (params[:challenge][:duration]).to_i
+            @num_sets = (params[:sets]).to_i
+            @set_increment = (params[:set_increment]).to_i
+            @counter = 1
+            
+            # build challenge days
+            @total_days.times do
+                @challenge.days.build(name: "day#{@counter}", sets: @num_sets)
+                @counter += 1
+                @num_sets += @set_increment
+            end
             @challenge.save
             #add success message (session[:success] = "challenge successfully updated")
             redirect "/users/#{@challenge.user.username}/challenges/#{@challenge.id}"

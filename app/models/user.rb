@@ -4,7 +4,4 @@ class User < ActiveRecord::Base
     has_many :challenges
     has_many :types, through: :challenges
 
-    def selected_challenge
-        self.challenges.select {|challenge| challenge.id = params[:id]}.first
-    end
 end

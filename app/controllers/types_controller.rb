@@ -1,20 +1,21 @@
+require 'pry'
 class TypesController < ApplicationController
-    get '/types' do
-        if logged_in?
-            @types = current_user.types
+    get '/users/:username/types' do
+        if user_verified?
+            @types = current_user.types.uniq
             erb :'types/show_all'
         else
-           redirect '/session/login' 
+           redirect '/sessions/login' 
         end
 
     end
 
-    get '/types/:id' do
-        if logged_in? 
+    get '/users/:username/types/:id' do
+        if user_verified? 
             @type = current_user.types.select {|type| type.id = params[:id]}.first
             erb :'types/show'
         else
-            redirect '/session/login'
+            redirect '/sessions/login'
         end
     end
 end

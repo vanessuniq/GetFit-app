@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     end
 
     get '/users/:username' do
-        if logged_in?
+        if user_verified?
             @user = current_user
             erb :'users/profile'
         else
