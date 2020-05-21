@@ -21,8 +21,8 @@
     <% end %>
 
     <div class="submission">
-        <button type="button" id="signupbtn"><a href="/challenges/<%= @challenge.id %>/edit" style="color:black">Edit Challenge</a></button>
-        <form action="/challenges/<%= @challenge.id%>/delete" method="post">
+        <button type="button" id="signupbtn"><a href="/users/<%= @challenge.user.username %>/challenges/<%= @challenge.id %>/edit" style="color:black">Edit Challenge</a></button>
+        <form action="/users/<%= @challenge.user.username %>/challenges/<%= @challenge.id%>" method="post">
             <input type="hidden" name="_method" id="hidden" value="DELETE"/>
             <button type="submit" id="cancelbtn">Delete Challenge</button>
         </form>

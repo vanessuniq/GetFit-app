@@ -1,5 +1,6 @@
 require 'pry'
 class ChallengesController < ApplicationController
+    
     get '/users/:username/challenges' do
         if user_verified?
             @challenges = current_user.challenges
@@ -22,19 +23,10 @@ class ChallengesController < ApplicationController
 
     post '/challenges' do
         if logged_in?
-            n = (params[:challenge][:duration]).to_i
-            num_sets = (params[:sets]).to_i
-            up = (params[:set_increment]).to_i
-            c = 1
-
             @challenge = current_user.challenges.build(params[:challenge])
-            @type = Type.find(params[:type])
-            @challenge.type = @type 
-            n.times do
-                @challenge.days.build(name: "day#{c}", sets: num_sets)
-                c += 1
-                num_sets += up
-            end
+            @challenge.type = Type.find(params[:type])
+            @challenge.build_challenge_days
+            
             if @challenge.save
                 redirect "/users/#{current_user.username}/challenges/#{@challenge.id}"
             else
@@ -50,60 +42,51 @@ class ChallengesController < ApplicationController
     get '/users/:username/challenges/:id' do
         
         if user_verified?
-            @challenge = current_user.challenges.select {|challenge| challenge.id = params[:id]}.first
+            @challenge = current_user.selected_challenge
+            #@message = session.delete(:success) add it to show.erb
             erb :'challenges/show'
         else
             redirect '/sessions/login'
         end
     end
 
-    get '/challenges/:id/edit' do
-        if logged_in? #START HERE
-            @challenges = Challenge.where(user: current_user)
-            @challenge = @challenges.select {|challenge| challenge.id = params[:id]}.first
+    get 'users/:username/challenges/:id/edit' do
+        if user_verified? #START HERE
+            @challenge = current_user.challenges.select {|challenge| challenge.id = params[:id]}.first
             @types = Type.all
+            @errors = session.delete(:errors)
             erb :'/challenges/update'
         else
-            redirect '/session/login'
+            redirect '/sessions/login'
         end
     end
 
     patch '/challenges/:id' do
-        @challenges = Challenge.where(user: current_user)
-        @challenge = @challenges.select {|challenge| challenge.id = params[:id]}.first
+        @challenge = current_user.selected_challenge
         if @challenge.update(params[:challenge])
-            @challenge.days.clear
+            #@challenge.days.clear
 
-            @type = Type.find(params[:type])
-            @challenge.type = @type
+            @challenge.type = Type.find(params[:type])
             @challenge.days.each {|day| day.destroy}
 
-            n = (params[:challenge][:duration]).to_i
-            num_sets = (params[:sets]).to_i
-            up = (params[:set_increment]).to_i
-            c = 1
-            n.times do
-                @challenge.days.build(name: "day#{c}", sets: num_sets)
-                c += 1
-                num_sets += up
-            end
+            @challenge.build_challenge_days
             @challenge.save
-            redirect "/challenges/#{@challenge.id}"
+            #add success message (session[:success] = "challenge successfully updated")
+            redirect "/users/#{@challenge.user.username}/challenges/#{@challenge.id}"
         else
-            @errors = @challenge.errors.full_messages
-            erb :'challenges/update'
+            session[:errors] = @challenge.errors.full_messages
+            redirect "users/#{@challenge.user.username}/challenges/#{@challenge.id}/edit"
         end
     end
 
-    delete '/challenges/:id/delete' do
-        if logged_in?
-            @challenges = Challenge.where(user: current_user)
-            @challenge = @challenges.select {|challenge| challenge.id = params[:id]}.first
+    delete '/users/:username/challenges/:id' do
+        if user_verified?
+            @challenge = current_user.challenges.select {|challenge| challenge.id = params[:id]}.first
             @challenge.destroy
             
-            redirect '/challenges'
+            redirect "/users/#{params[:username]}/challenges"
         else
-            redirect '/session/login'
+            redirect '/sessions/login'
         end
     end
 
