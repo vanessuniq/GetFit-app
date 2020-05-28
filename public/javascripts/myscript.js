@@ -1,12 +1,13 @@
 function myGreeting() {
     var greeting;
-    var time = new Date().getHours;
-    if (time < 10) {
-        greeting = "Good morning"
-    } else if (time < 18) {
+    var d = new Date();
+    var t = d.getHours();
+    if (t > 18) {
+        greeting = "Good evening"
+    } else if (t > 10) {
         greeting = "Good day"
     } else {
-        greeting = "Good evening"
+        greeting = "Good morning"
     }
     document.getElementById("greet").innerHTML = greeting;
 }

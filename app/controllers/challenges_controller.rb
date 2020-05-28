@@ -104,6 +104,7 @@ class ChallengesController < ApplicationController
     delete '/users/:username/challenges/:id' do
         if user_verified?
             @challenge = current_user.challenges.select {|challenge| challenge.id = params[:id]}.first
+            @challenge.days.destroy_all
             @challenge.destroy
             
             redirect "/users/#{params[:username]}/challenges"
