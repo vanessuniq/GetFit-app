@@ -6,34 +6,49 @@
   <% end %>
 <% end %>
 
+<div>
 <form action="/challenges" method="POST">
-    <div>
+    <fieldset>
         <label for="challenge_name">Challenge Name: </label>
-        <input type="text" name="challenge[name]" id="challenge_name" required><br>
+        <input type="text" name="challenge[name]" id="challenge_name" required>
+    </fieldset>
+
+    <fieldset>
         <h3>Type: </h3>
         <% @types.each do |type| %>
           <input type="radio" name="type" id="<%= type.name %>" value="<%= type.id %>" required>
           <label for="<%= type.name %>"><%= type.name %></label><br>
         <% end %>
-        <p>
+    </fieldset>
+    <fieldset>
         <label for="duration">Duration: </label>
         <input type="number" name="challenge[duration]" id="duration" required> day(s)<br>
-        </p>
+    </fieldset>
+
+    <fieldset>
         <label for="start_date">Start Date: </label>
-        <input type="date" name="challenge[start_date]" id="start_date" required><br><br>
+        <input type="date" name="challenge[start_date]" id="start_date" required><br>
+    </fieldset>
+
+    <fieldset>
         <label for="end_date">End Date: </label>
-        <input type="date" name="challenge[end_date]" id="end_date" required><br><br>
-        <label for="reps">Number of Repetion: </label>
-        <input type="number" name="challenge[reps]" id="reps" required><br><br>
-        <p>
-        <label for="initial_set">Initial Number of Sets: </label>
-        <input type="number" name="sets" id="initial_set" required>
-        <label for="set_increment">Increment number of sets by </label>
-        <input type="number" name="set_increment" id="set_increment" required> daily <br>
-        </p>
-    </div>
-    <div class="submission">
+        <input type="date" name="challenge[end_date]" id="end_date" required><br>
+    </fieldset>
+
+    <fieldset>
+        <label for="sets">Number of sets: </label>
+        <input type="number" name="challenge[sets]" id="sets" required><br>
+    </fieldset>
+    <p>
+        <label for="initial_rep">Initial Number of Reps: </label>
+        <input type="number" name="reps" id="initial_rep" required>
+        <label for="rep_increment">Increment number of reps by </label>
+        <input type="number" name="rep_increment" id="rep_increment" required> daily <br>
+    </p>
+    
+    <fieldset class="submission">
         <button type="button" id="cancelbtn"><a href="/users/<%= current_user.username %>">Cancel</a></button>
         <button type="submit" id="signupbtn">Create</button>
-    </div>
+    </fieldset>
 </form>
+<div>

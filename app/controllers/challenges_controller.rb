@@ -28,15 +28,15 @@ class ChallengesController < ApplicationController
 
             # set variables to build days
             @total_days = (params[:challenge][:duration]).to_i
-            @num_sets = (params[:sets]).to_i
-            @set_increment = (params[:set_increment]).to_i
+            @num_reps = (params[:reps]).to_i
+            @rep_increment = (params[:rep_increment]).to_i
             @counter = 1
                                                         #is there a way to abstract this 2
             # build challenge days
             @total_days.times do
-                @challenge.days.build(name: "day#{@counter}", sets: @num_sets)
+                @challenge.days.build(name: "day#{@counter}", reps: @num_reps)
                 @counter += 1
-                @num_sets += @set_increment
+                @num_reps += @rep_increment
             end
             
             if @challenge.save
@@ -76,24 +76,23 @@ class ChallengesController < ApplicationController
 
     patch '/challenges/:id' do
         @challenge = current_user.challenges.find(params[:id])
-        if @challenge.update(params[:challenge])
+        @challenge.duration = params[:challenge][:duration]
+        @challenge.sets = params[:challenge][:sets]
+        @challenge.days.destroy_all
 
-            @challenge.type = Type.find(params[:type])
-            @challenge.days.each {|day| day.destroy}
-
-            # set variables to build days
-            @total_days = (params[:challenge][:duration]).to_i
-            @num_sets = (params[:sets]).to_i
-            @set_increment = (params[:set_increment]).to_i
-            @counter = 1
-            
-            # build challenge days
-            @total_days.times do
-                @challenge.days.build(name: "day#{@counter}", sets: @num_sets)
-                @counter += 1
-                @num_sets += @set_increment
-            end
-            @challenge.save
+        # set variables to build days
+        @total_days = (params[:challenge][:duration]).to_i
+        @num_reps = (params[:reps]).to_i
+        @rep_increment = (params[:rep_increment]).to_i
+        @counter = 1
+        
+        # build challenge days
+        @total_days.times do
+            @challenge.days.build(name: "day#{@counter}", reps: @num_reps)
+            @counter += 1
+            @num_reps += @rep_increment
+        end
+        if @challenge.save
             session[:success] = "Your #{@challenge.name} challenge has been successfully updated."
             redirect "/users/#{@challenge.user.username}/challenges/#{@challenge.id}"
         else

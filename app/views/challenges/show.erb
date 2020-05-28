@@ -14,11 +14,11 @@
     <br>
     <p><b>Start date: </b> <%= @challenge.start_date.strftime("%b %d, %Y") %></p>
     <p><b>End date: </b><%= @challenge.end_date.strftime("%b %d, %Y") %></p>
-    <p><b>Number of Reps: </b><%= @challenge.reps %></p>
+    <p><b>Number of Sets: </b><%= @challenge.sets %></p>
     <br>
-    <h4>Sets per Day</h4>
+    <h4>Number of reps per Day</h4>
     <% @challenge.days.each do |day| %>
-      <p style="color:navy"><b><%= day.name %>: </b> <%= day.sets %> sets</p>
+      <p style="color:navy"><b><%= day.name %>: </b> <%= day.reps %> reps</p>
     <% end %>
 
     <div class="submission">
