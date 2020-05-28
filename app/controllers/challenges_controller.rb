@@ -40,6 +40,7 @@ class ChallengesController < ApplicationController
             end
             
             if @challenge.save
+                session[:success] = "Your #{@challenge.duration}-day #{@challenge.name} challenge has been successfully created."
                 redirect "/users/#{current_user.username}/challenges/#{@challenge.id}"
             else
                 session[:errors] = @challenge.errors.full_messages
@@ -55,7 +56,7 @@ class ChallengesController < ApplicationController
         
         if user_verified?
             @challenge = current_user.challenges.find(params[:id])
-            #@message = session.delete(:success) add it to show.erb
+            @message = session.delete(:success)
             erb :'challenges/show'
         else
             redirect '/sessions/login'
