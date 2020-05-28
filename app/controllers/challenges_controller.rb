@@ -64,7 +64,7 @@ class ChallengesController < ApplicationController
     end
 
     get '/users/:username/challenges/:id/edit' do
-        if user_verified? #START HERE
+        if user_verified?
             @challenge = current_user.challenges.find(params[:id])
             @types = Type.all
             @errors = session.delete(:errors)
@@ -94,7 +94,7 @@ class ChallengesController < ApplicationController
                 @num_sets += @set_increment
             end
             @challenge.save
-            #add success message (session[:success] = "challenge successfully updated")
+            session[:success] = "Your #{@challenge.name} challenge has been successfully updated."
             redirect "/users/#{@challenge.user.username}/challenges/#{@challenge.id}"
         else
             session[:errors] = @challenge.errors.full_messages
