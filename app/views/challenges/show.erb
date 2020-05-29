@@ -5,10 +5,13 @@
         <li><a href="/sessions/logout">LogOut</a></li>
     </ul>
 </div>
+
 <header>
     <br>
     <p style="color:tomatoe"><%= @message %></p>
     <h1>Challenge Details </h1>
+</header>
+
 <section>
     <h3><%= @challenge.duration %> Day <%= @challenge.name.capitalize %> Challenge </h3>
     <br>
@@ -21,13 +24,12 @@
       <p style="color:navy"><b><%= day.name %>: </b> <%= day.reps %> reps</p>
     <% end %>
 
-    <div class="submission">
-        <button type="button" id="signupbtn"><a href="/users/<%= @challenge.user.username %>/challenges/<%= @challenge.id %>/edit" style="color:black">Edit Challenge</a></button>
+    <div>
+        <a href="/users/<%= @challenge.user.username %>/challenges/<%= @challenge.id %>/edit">Edit Challenge</a>
         <form action="/users/<%= @challenge.user.username %>/challenges/<%= @challenge.id%>" method="post" onsubmit = "return confirm('Are you sure you want to delete this challenge?');">
             <input type="hidden" name="_method" id="hidden" value="DELETE"/>
-            <button type="submit" id="cancelbtn" >Delete Challenge</button>
-        </form>
-        
+            <input type="submit" value="Delete This Challenge">
+        </form>   
     </div>
 
 </section>

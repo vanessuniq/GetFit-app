@@ -1,28 +1,34 @@
-<form action="/registration" method="post" style="border:1px solid #ccc">
-    
-    <div class = "container">
-        <h1>Sign Up</h1>
-        <p>Fill in this form to create an account.</p>
-        <hr>
+<h1>Sign Up Here!</h1>
+<p>Fill in this form to create an account.</p>
+
+<div>
+    <form action="/registration" method="post" >
+
         <% if @errors %>
             <% @errors.each do |error|%>
                 <p style="color: red;"><%= error %></p>
             <% end %>
         <% end %>
 
-        <label for="username"><b>User Name</b></label>
-        <input type="text" name="username" id="username" placeholder="Enter username" required/><br><br>
-        <label for="dob"><b>Date of birth</b></label>
-        <input type="date" name="dob" id="dob" placeholder="YYYY-MM-DD"><br><br>
-        <label for="weight"><b>Weight</b></label>
-        <input type="number" name="weight" id="weight" placeholder="Enter weight in pounds"> lbs<br><br>
-        <label for="email"><b>Email</b></label>
-        <input type="email" name="email" id="email" placeholder="Enter a valid email" required/><br><br>
-        <label for="psw"><b>Password</b></label>
-        <input type="password" name="password" id="psw" placeholder="Enter password" required/><br>
-    </div>
-    <div class="submission">
-        <button type="button" id="cancelbtn"><a href="/">Cancel</a></button>
-        <button type="submit" id="signupbtn">Sign Up!</button>
-    </div>
-</form>
+        <fieldset>
+            <label for="username"><b>User Name</b></label>
+            <input type="text" name="username" id="username" placeholder="Enter username" required/><br><br>
+            <label for="dob"><b>Date of birth</b></label>
+            <input type="date" name="dob" id="dob"><br><br>
+            <label for="weight"><b>Weight</b></label>
+            <input type="number" name="weight" id="weight" placeholder="Enter weight in pounds"> lbs<br>
+        </fieldset>
+
+        <fieldset>
+            <label for="email"><b>Email</b></label>
+            <input type="email" name="email" id="email" placeholder="Enter a valid email" required/><br><br>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" name="password" id="psw" placeholder="Enter password" required/><br>
+        </fieldset>
+
+        <input type="submit" value="Sign Up!">
+
+    </form>
+</div>
+
+<a href="/">Cancel</a>

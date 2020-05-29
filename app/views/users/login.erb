@@ -1,25 +1,24 @@
-<form action="/sessions" method="post" style="border:3px solid #f1f1f1">
-    <div style="text-align:center; margin:24px 0 12px 0">
-        <img src="/images/fitness.jpg" alt="fitness image"  class="fitness"/>
-    </div>
+<div>
+    <form action="/sessions" method="post" >
+        <h4>GetFit</h4>
+        <p>Welcome back! Please login below to view your account</p>
+        <fieldset >
+            <label for="username"><b>Username</b></label>
+            <input type="text" name="username" id="username" required/><br>
+        </fieldset>
+        <fieldset>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" name="password" id="psw" required/><br>
+        </fieldset>
 
-    <div class="container" style="padding:16px; text-align:center">
-        <label for="username"><b>Username</b></label>
-        <input type="text" name="username" id="username" required/><br>
-        <label for="psw"><b>Password</b></label>
-        <input type="password" name="password" id="psw" required/><br>
-    </div>
-    
-    <div class="container" style="background-color:#f1f1f1; padding: 16px; text-align: center">
         <% if @errors %>
             <p style="color:red;"><%= @errors %></p>
-            <button type="submit" value= "LogIn">LogIn</button>
+            <input type="submit" value="LogIn">
             <p>or</p>
-            <button type="button" id="signupbtn2"><a href="/registration/signup">SignUp</a></button>
+            <a href="/registration/signup">SignUp</a>
         <% else %>
-            <button type="submit" value= "LogIn">LogIn</button>
+            <input type="submit" value="LogIn">
         <% end %>
-        
-    </div>
 
-</form>
+    </form>
+</div>
