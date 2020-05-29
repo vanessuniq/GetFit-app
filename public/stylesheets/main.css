@@ -1,92 +1,17 @@
-    /* style forms */
+    /* general layout */
     
     * {
         box-sizing: border-box;
     }
-    /* input fields full width */
     
-    input[type=text],
-    input[type=password] {
-        width: 100%;
-        padding: 15px;
-        margin: 5px 0 22px 0;
-        display: inline-block;
-        border: none;
-        background: #f1f1f1;
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 40px;
+        text-align: center;
+        color: #333;
+        font-size: 18px;
     }
-    
-    input[type=text]:focus,
-    input[type=password]:focus {
-        background-color: #ddd;
-        outline: none;
-    }
-    
-    hr {
-        border: 1px solid #f1f1f1;
-        margin-bottom: 25px;
-    }
-    /* buttons style */
-    
-    button {
-        background-color: #4caf50;
-        color: whitesmoke;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        opacity: 0.9;
-    }
-    
-    button:hover {
-        opacity: 1;
-    }
-    /* float buttons */
-    
-    #cancelbtn,
-    #signupbtn {
-        float: left;
-        width: 50%;
-    }
-    /* cancel button specific */
-    
-    #cancelbtn {
-        padding: 14px 20px;
-        background-color: #f44336;
-    }
-    
-    button a {
-        text-decoration: none;
-    }
-    /*forms div */
-    
-    .container {
-        padding: 16px;
-    }
-    
-    .submission::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
-    /* login form specific */
-    
-    #login input[type=text],
-    #login input[type=password] {
-        padding: 12px 20px;
-        margin: 8px 0;
-        border: 1px solid #ccc;
-    }
-    
-    img.fitness {
-        width: 40%;
-        border-radius: 50%;
-    }
-    /* for small screen fit */
-    
-    @media screen and (max-width: 300px) {
-        #cancelbtn,
-        #signupbtn {
-            width: 100%;
-        }
-    }
+    /* navigation bar */
