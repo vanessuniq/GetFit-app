@@ -55,7 +55,7 @@ class ChallengesController < ApplicationController
     get '/users/:username/challenges/:id' do
         
         if user_verified?
-            @challenge = current_user.challenges.find(params[:id])
+            @challenge = find_challenge
             @message = session.delete(:success)
             erb :'challenges/show'
         else
@@ -65,7 +65,10 @@ class ChallengesController < ApplicationController
 
     get '/users/:username/challenges/:id/edit' do
         if user_verified?
-            @challenge = current_user.challenges.find(params[:id])
+
+            
+            @challenge = find_challenge
+
             @types = Type.all
             @errors = session.delete(:errors)
             erb :'/challenges/update'
@@ -103,7 +106,7 @@ class ChallengesController < ApplicationController
 
     delete '/users/:username/challenges/:id' do
         if user_verified?
-            @challenge = current_user.challenges.select {|challenge| challenge.id = params[:id]}.first
+            @challenge = current_user.challenges.select {|challenge| challenge.id == params[:id]}.first
             @challenge.days.destroy_all
             @challenge.destroy
             
@@ -113,5 +116,13 @@ class ChallengesController < ApplicationController
         end
     end
 
-    
+  private 
+  def find_challenge
+    challenge = current_user.challenges.find_by(id: params[:id])
+    if challenge
+        challenge
+    else
+        redirect "/users/#{current_user.username}"  
+    end
+  end
 end
