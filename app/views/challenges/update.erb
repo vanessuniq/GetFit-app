@@ -4,8 +4,9 @@
     <p style="color:red"><%= error %></p>
   <% end %>
 <% end %>
+
 <div>
-<form action="/challenges/<%= @challenge.id %>" method="POST">
+  <form action="/challenges/<%= @challenge.id %>" method="POST">
     
       <input type="hidden" name="_method" id="hidden" value="PATCH"/>
 
@@ -24,11 +25,10 @@
         <label for="rep_increment">Increment number of reps by </label>
         <input type="number" name="rep_increment" id="rep_increment" required> daily <br>
       </p>
-    
-    <fieldset class="submission">
-        <button type="button" id="cancelbtn"><a href="/users/<%= @challenge.user.username %>/challenges/<%= @challenge.id %>">Cancel</a></button>
-        <button type="submit" id="signupbtn">Update</button>
-    </fieldset>
 
-</form>
+      <input type="submit" value="Update Challenge">
+
+  </form>
 </div>
+
+<a href="/users/<%= @challenge.user.username %>/challenges/<%= @challenge.id %>">Cancel</a>

@@ -1,9 +1,9 @@
-<div class="navbar">
-    <ul>
-        <li> <a href="/">Home</a></li>
-        <li><a href="/sessions/logout">LogOut</a></li>
-    </ul>
-</div>
+<nav>
+    
+    <a href="/">Home</a>
+    <a href="/sessions/logout">LogOut</a>
+    
+</nav>
 
 <header>
 <br>
@@ -11,6 +11,7 @@
     <h2><span id="greet"></span>, <%= @user.username %>!</h2>
 </header>
 <section>
+  
     <div class="left" id="info">
         <h2><%= @user.username%></h2>
         <% if @user.dob %>
@@ -21,7 +22,7 @@
         <p>Weight: <%= @user.weight%> lbs</p>
         <p>Email: <%= @user.email %></p>
     </div>
-    <br>
+    
     <div class="left">
         <ul>
             <li><a href="/users/<%= @user.username %>/challenges">My Challenges</a></li>
@@ -29,5 +30,9 @@
             <li><a href="/users/<%= @user.username %>/challenges/new">Create New Challenge</a></li>
         </ul>
     </div>
-    <br>
+   
 </section>
+<footer>
+        <small>&copy; 2020 <strong>SinatraGetFit</strong></small>
+        <small><i>Vanessa Fotso </i><strong>Flatiron school</strong></small>
+</footer>
