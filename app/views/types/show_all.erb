@@ -1,10 +1,10 @@
-<div class="navbar">
-    <ul>
-        <li><a href="/users/<%= current_user.username %>/challenges/new">Create new challenge</a></li>
-        <li> <a href="/users/<%= current_user.username %>">My account</a></li>
-        <li><a href="/sessions/logout">LogOut</a></li>
-    </ul>
-</div>
+<nav>
+    
+    <a href="/users/<%= current_user.username %>/challenges/new">Create new challenge</a>
+    <a href="/users/<%= current_user.username %>">My account</a>
+    <a href="/sessions/logout">LogOut</a>
+    
+</nav>
 <header>
 <br>
     <h1>My Challenges' Types </h1>
@@ -23,3 +23,7 @@
     <% end %>
     
 </section>
+<footer>
+        <small>&copy; 2020 <strong>SinatraGetFit</strong></small>
+        <small><i>Vanessa Fotso </i><strong>Flatiron school</strong></small>
+</footer> 

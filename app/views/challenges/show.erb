@@ -1,10 +1,10 @@
-<div class="navbar">
-    <ul>
-        <li><a href="/users/<%= current_user.username %>/challenges/new">Create new challenge</a></li>
-        <li> <a href="/users/<%= current_user.username %>">My account</a></li>
-        <li><a href="/sessions/logout">LogOut</a></li>
-    </ul>
-</div>
+<nav>
+    
+    <a href="/users/<%= current_user.username %>/challenges/new">Create new challenge</a>
+    <a href="/users/<%= current_user.username %>">My account</a>
+    <a href="/sessions/logout">LogOut</a>
+    
+</nav>
 
 <header>
     <br>
@@ -24,12 +24,19 @@
       <p style="color:navy"><b><%= day.name %>: </b> <%= day.reps %> reps</p>
     <% end %>
 
-    <div>
+    <div class="selection">
+    
         <a href="/users/<%= @challenge.user.username %>/challenges/<%= @challenge.id %>/edit">Edit Challenge</a>
         <form action="/users/<%= @challenge.user.username %>/challenges/<%= @challenge.id%>" method="post" onsubmit = "return confirm('Are you sure you want to delete this challenge?');">
             <input type="hidden" name="_method" id="hidden" value="DELETE"/>
             <input type="submit" value="Delete This Challenge">
-        </form>   
+        </form> 
+      
     </div>
 
 </section>
+
+<footer>
+        <small>&copy; 2020 <strong>SinatraGetFit</strong></small>
+        <small><i>Vanessa Fotso </i><strong>Flatiron school</strong></small>
+</footer> 

@@ -17,27 +17,27 @@
         <h3>Type: </h3>
         <% @types.each do |type| %>
           <input type="radio" name="type" id="<%= type.name %>" value="<%= type.id %>" required>
-          <label for="<%= type.name %>"><%= type.name %></label><br>
+          <label for="<%= type.name %>"><%= type.name %></label>
         <% end %>
     </fieldset>
     <fieldset>
         <label for="duration">Duration: </label>
-        <input type="number" name="challenge[duration]" id="duration" required> day(s)<br>
+        <input type="number" name="challenge[duration]" id="duration" required> day(s)
     </fieldset>
 
     <fieldset>
         <label for="start_date">Start Date: </label>
-        <input type="date" name="challenge[start_date]" id="start_date" required><br>
+        <input type="date" name="challenge[start_date]" id="start_date" required>
     </fieldset>
 
     <fieldset>
         <label for="end_date">End Date: </label>
-        <input type="date" name="challenge[end_date]" id="end_date" required><br>
+        <input type="date" name="challenge[end_date]" id="end_date" required>
     </fieldset>
 
     <fieldset>
         <label for="sets">Number of sets: </label>
-        <input type="number" name="challenge[sets]" id="sets" required><br>
+        <input type="number" name="challenge[sets]" id="sets" required>
     </fieldset>
     <p>
         <label for="initial_rep">Initial Number of Reps: </label>
@@ -47,8 +47,8 @@
     </p>
     
     <input type="submit" value="Create Challenge">
+
     
 </form>
 <div>
-
 <a href="/users/<%= current_user.username %>">Cancel</a>
