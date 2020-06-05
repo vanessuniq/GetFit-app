@@ -25,5 +25,25 @@ class ApplicationController < Sinatra::Base
           logged_in? && current_user.username == params[:username]
         end
 
+        def find_challenge
+          challenge = current_user.challenges.find_by(id: params[:id])
+          if challenge
+              challenge
+          else
+              session[:faillure] = "There's no such challenge in your list. Please select a challenge below or create a new challenge."
+              redirect "/users/#{current_user.username}/challenges"  
+          end
+        end
+
+        def find_type
+          type = current_user.types.find_by(id: params[:id])
+          if type
+              type
+          else
+              session[:faillure] = "There's no such type in your list, please select a type below."
+              redirect "/users/#{current_user.username}/types"  
+          end
+        end
+
     end
 end

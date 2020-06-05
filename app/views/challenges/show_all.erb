@@ -10,6 +10,10 @@
     <h1>My challenges </h1>
 </header>
 <section>
+  <br>
+    <b style="color: red;"><%= @faillure %></b>
+    <b style="color: red;"><%= @message %></b>
+
     <% if @challenges.empty? %>
       <p>There is no challenge to display. <a href="/users/<%= current_user.username %>/challenges/new"><b>Create new challenge</b></a></p>
     <% else %>

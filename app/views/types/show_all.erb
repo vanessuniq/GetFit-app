@@ -10,6 +10,9 @@
     <h1>My Challenges' Types </h1>
 </header>
 <section>
+<br>
+    <b style="color: red;"><%= @faillure %></b>
+
     <% if @types.empty? %>
       <p>You have not created a challenge under any type yet. <a href="/users/<%= current_user.username %>/challenges/new"><b>Create new challenge</b></a></p>
     <% else %>

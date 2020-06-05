@@ -14,7 +14,7 @@
 <section>
     <ul>
         <% current_user.challenges.each do |challenge| %>
-            <% if challenge.type = @type %>
+            <% if challenge.type == @type %>
                 <li><a href="/users/<%= current_user.username %>/challenges/<%= challenge.id %>"><b style="color:#800000"><%= challenge.duration %> Day <%= challenge.name %> Challenge</b></a></li>
             <% end %>
           
