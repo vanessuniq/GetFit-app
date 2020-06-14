@@ -3,3 +3,9 @@ development:
   encoding: unicode
   database: db/development.sqlite3
   pool: 5
+
+production:
+  adapter: sqlite3
+  encoding: unicode
+  database: db/production.sqlite3
+  pool: 5
