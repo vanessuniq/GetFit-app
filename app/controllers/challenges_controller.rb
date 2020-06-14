@@ -1,4 +1,3 @@
-require 'pry'
 class ChallengesController < ApplicationController
     
     get '/users/:username/challenges' do

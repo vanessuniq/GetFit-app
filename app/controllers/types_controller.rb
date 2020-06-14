@@ -1,4 +1,3 @@
-require 'pry'
 class TypesController < ApplicationController
     get '/users/:username/types' do
         if user_verified?
