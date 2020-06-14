@@ -14,6 +14,7 @@ gem 'thin'
 gem 'bcrypt'
 gem 'dotenv'
 gem 'session_secret_generator'
+gem 'pg'
 
 group :development do
   gem 'sqlite3'
@@ -22,7 +23,5 @@ group :development do
   gem "tux"
 end
 
-group :production do
-  gem 'pg'
-end
+
 # gem "rails"
