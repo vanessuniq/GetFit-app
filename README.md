@@ -12,4 +12,4 @@ run `shotgun` or `rackup` on your terminal, then click on the provided local lin
 
 # App page
 
-<a href= "vanessuniq.github.io/get-fit-sinatra-app" target= "_blank"> Check GetFit app here </a>
+<a href= "https://github.com/vanessuniq/get-fit-sinatra-app" target= "_blank"> Check GetFit app code here </a>
